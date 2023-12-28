@@ -4,32 +4,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.entity.LOST_NOTI;
-import com.example.demo.entity.LOST_NOTIRepository;
-import org.junit.After;
-import org.junit.Test;
+import com.example.demo.repository.LostNotiRepository;
+import com.example.demo.entity.LostNoti;
+
+import java.util.List;
+
 
 @RestController
-public class mainController {
-	LOST_NOTIRepository lostNotiRepository;
+public class MainController {
+	LostNotiRepository lostNotiRepository;
 	
 	@Autowired
-	public mainController(LOST_NOTIRepository lostNotiRepository) {
+	public MainController(LostNotiRepository lostNotiRepository) {
 		this.lostNotiRepository = lostNotiRepository;
 	}
 	
-	@After //Junit에서 단위 테스트가 끝날 때마다 수행되는 메소드
-	public void cleanUp() {
-		lostNotiRepository.deleteAll();
-	}
-	
-	@Test
-	public void test() {
-		lostNotiRepository.save(LOST_NOTI.builder().noti_kind_cd("dd").build());
-	}
-	
 	@RequestMapping("/hello")
-	public String test1() {
+	public String hello() {
+		List<LostNoti> temp = lostNotiRepository.findAll();
+		List<LostNoti> temp2 = lostNotiRepository.findByNotiDate("2023-12-27");
 		return "hello";
 	}
 	

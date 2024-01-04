@@ -28,7 +28,7 @@ public class MainController {
 	//이번달 로스트아크 소식
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/getMonthLostArkNoti")
-	public String hello() {
+	public JSONArray getMonthLostArkNoti() {
 		JSONParser jsonParser = new JSONParser();
 		JSONArray jsonArr = new JSONArray();
 		List<LostNoti> list = lostNotiRepository.findByNotiDate("2023-12-27");
@@ -41,9 +41,33 @@ public class MainController {
 			temp.put("notiTitle", list.get(i).getNotiTitle());
 			temp.put("notiDate", list.get(i).getNotiDate());
 			temp.put("notiContent", list.get(i).getNotiContent());
+			
+			jsonArr.add(temp);
 		}
-		return "hello";
+		return jsonArr;
 	}
+	
+	//이번달 길드 소식
+		@SuppressWarnings("unchecked")
+		@RequestMapping("/getMonthLostArkNoti")
+		public JSONArray getMonthGuildNoti() {
+			JSONParser jsonParser = new JSONParser();
+			JSONArray jsonArr = new JSONArray();
+			List<LostNoti> list = lostNotiRepository.findByNotiDate("2023-12-27");
+			
+			for(int i=0; i<list.size(); i++) {
+				JSONObject temp = new JSONObject();
+				
+				temp.put("notiKindCd", list.get(i).getNotiKindCd());
+				temp.put("notiKindNm", list.get(i).getNotiKindNm());
+				temp.put("notiTitle", list.get(i).getNotiTitle());
+				temp.put("notiDate", list.get(i).getNotiDate());
+				temp.put("notiContent", list.get(i).getNotiContent());
+				
+				jsonArr.add(temp);
+			}
+			return jsonArr;
+		}
 	
 
 }

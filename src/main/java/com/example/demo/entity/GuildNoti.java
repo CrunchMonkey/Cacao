@@ -16,14 +16,14 @@ public class GuildNoti {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long notiSeq;
 	
-	private String notiKindCd;
-	private String notiKindNm;
-	private String notiTitle;
-	private String notiContent;
-	private String notiWrtrId;
-	private String notiWrtrNick;
-	private String notiMofiId;
-	private String notiMofiNick;
-	private String notiMofiDate;
-	private String notiWrtrDate;
+	private String notiKindCd; //공지종류코드
+	private String notiKindNm; //공지종류
+	private String notiTitle; //공지타이틀
+	private String notiContent; //공지내용
+	private String notiWrtrId; //작성자ID
+	private String notiWrtrNick; //작성자닉네임
+	private String notiMofiId; //수정자ID
+	private String notiMofiNick; //수정자닉네임
+	private String notiMofiDate; //수정일
+	private String notiWrtrDate; //작성일
 }

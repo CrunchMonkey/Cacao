@@ -48,9 +48,9 @@ public class MainController {
 		return jsonArr;
 	}
 	
-	//이번달 길드 소식
+	//이번달 길드 소식(현재는 오늘 소식으로 되어있음)
 	@SuppressWarnings("unchecked")
-	@RequestMapping("/getMonthLostArkNoti")
+	@RequestMapping("/getMonthGuildNoti")
 	public JSONArray getMonthGuildNoti() {
 		JSONParser jsonParser = new JSONParser();
 		JSONArray jsonArr = new JSONArray();
@@ -68,6 +68,24 @@ public class MainController {
 			jsonArr.add(temp);
 		}
 		return jsonArr;
+	}
+	
+	//길드소석 상세
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/getGuildNotiDetail")
+	public JSONObject getGuildNotiDetail() {
+		JSONParser jsonParser = new JSONParser();
+		GuildNoti temp = guildNotiRepository.findByNotiSeq((long) 1);
+		
+		JSONObject jsonObj = new JSONObject();
+		
+		jsonObj.put("notiKindCd", temp.getNotiKindCd());
+		jsonObj.put("notiKindNm", temp.getNotiKindNm());
+		jsonObj.put("notiTitle", temp.getNotiTitle());
+		jsonObj.put("notiWrtrDate", temp.getNotiWrtrDate());
+		jsonObj.put("notiContent", temp.getNotiContent());
+		
+		return jsonObj;
 	}
 	
 

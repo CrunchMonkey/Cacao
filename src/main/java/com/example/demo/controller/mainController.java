@@ -12,6 +12,7 @@ import com.example.demo.repository.LostNotiRepository;
 import com.example.demo.entity.GuildNoti;
 import com.example.demo.entity.LostNoti;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -32,7 +33,16 @@ public class MainController {
 	public JSONArray getMonthLostArkNoti() {
 		JSONParser jsonParser = new JSONParser();
 		JSONArray jsonArr = new JSONArray();
-		List<LostNoti> list = lostNotiRepository.findByNotiDate("2023-12-27");
+		
+		LocalDate now = LocalDate.now();
+		StringBuilder nowMonth = new StringBuilder();
+		
+		nowMonth.append(Integer.toString(now.getYear())); //이번년도
+		nowMonth.append("-"); //하이픈
+		nowMonth.append(now.getMonth().toString()); //이번달
+		nowMonth.append("%");
+		
+		List<LostNoti> list = lostNotiRepository.findByNotiDateLike(nowMonth);
 		
 		for(int i=0; i<list.size(); i++) {
 			JSONObject temp = new JSONObject();
@@ -54,7 +64,16 @@ public class MainController {
 	public JSONArray getMonthGuildNoti() {
 		JSONParser jsonParser = new JSONParser();
 		JSONArray jsonArr = new JSONArray();
-		List<GuildNoti> list = guildNotiRepository.findByNotiDate("2023-12-27");
+		
+		LocalDate now = LocalDate.now();
+		StringBuilder nowMonth = new StringBuilder();
+		
+		nowMonth.append(Integer.toString(now.getYear())); //이번년도
+		nowMonth.append("-"); //하이픈
+		nowMonth.append(now.getMonth().toString()); //이번달
+		nowMonth.append("%");
+		
+		List<GuildNoti> list = guildNotiRepository.findByNotiDateLike(nowMonth); //이번년도-이번달
 		
 		for(int i=0; i<list.size(); i++) {
 			JSONObject temp = new JSONObject();

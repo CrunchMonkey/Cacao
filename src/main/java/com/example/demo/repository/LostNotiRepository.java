@@ -15,7 +15,7 @@ public interface LostNotiRepository  extends JpaRepository<LostNoti, Long>{//연
 //	findAll() / 모든 데이터 불러오기
 	
 	//이번달 로스트아크 소식 불러오기
-	List<LostNoti> findByNotiDate(String notiDate);
+	List<LostNoti> findByNotiDateLike(StringBuilder notiDate);
 	//이번달 길드 소식 불러오기
 	
 }

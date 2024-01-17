@@ -17,5 +17,8 @@ public interface GuildNotiRepository extends JpaRepository<GuildNoti, Long>{
 	GuildNoti findByNotiSeq(Long notiSeq);
 	
 	//특정 유저가 작성한 글목록
+	List<GuildNoti> findByNotiWrtrId(String notiWrtrId);
+	
 	//내용이 포함된 작성한 글목록
+	List<GuildNoti> findByNotiContentLike(StringBuilder notiContent);
 }

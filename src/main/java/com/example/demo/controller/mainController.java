@@ -36,13 +36,9 @@ public class MainController {
 		
 		LocalDate now = LocalDate.now();
 		StringBuilder nowMonth = new StringBuilder();
+		String str = now.toString().substring(0, 7) + "%";
 		
-		nowMonth.append(Integer.toString(now.getYear())); //이번년도
-		nowMonth.append("-"); //하이픈
-		nowMonth.append(now.getMonth().toString()); //이번달
-		nowMonth.append("%");
-		
-		List<LostNoti> list = lostNotiRepository.findByNotiDateLike(nowMonth);
+		List<LostNoti> list = lostNotiRepository.findByNotiDateLike(str);
 		
 		for(int i=0; i<list.size(); i++) {
 			JSONObject temp = new JSONObject();
@@ -66,14 +62,9 @@ public class MainController {
 		JSONArray jsonArr = new JSONArray();
 		
 		LocalDate now = LocalDate.now();
-		StringBuilder nowMonth = new StringBuilder();
+		String str = now.toString().substring(0, 7) + "%";
 		
-		nowMonth.append(Integer.toString(now.getYear())); //이번년도
-		nowMonth.append("-"); //하이픈
-		nowMonth.append(now.getMonth().toString()); //이번달
-		nowMonth.append("%");
-		
-		List<GuildNoti> list = guildNotiRepository.findByNotiDateLike(nowMonth); //이번년도-이번달
+		List<GuildNoti> list = guildNotiRepository.findByNotiWrtrDateLike(str); //이번년도-이번달
 		
 		for(int i=0; i<list.size(); i++) {
 			JSONObject temp = new JSONObject();

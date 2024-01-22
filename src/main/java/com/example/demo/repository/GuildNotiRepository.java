@@ -11,7 +11,7 @@ import com.example.demo.entity.LostNoti;
 @Repository
 public interface GuildNotiRepository extends JpaRepository<GuildNoti, Long>{
 	//이번달 길드 소식 불러오기
-	List<GuildNoti> findByNotiDateLike(StringBuilder notiDate);
+	List<GuildNoti> findByNotiWrtrDateLike(String notiWrtrDate);
 	
 	//선택한 글 상세
 	GuildNoti findByNotiSeq(Long notiSeq);
